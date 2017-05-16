@@ -19,13 +19,15 @@ import Foundation
  Make use of your test plan and algorithm to ensure your code is complete.
  
  */
-var inputToProcess : String = ""
+var numberOfVotes = Int()
+var votes = String()
+var output = String()
 
 // Loop until valid input is received
-while inputToProcess == "" {
+while numberOfVotes == 0 {
     
     // Show the prompt
-    print("Ask the question here? ", terminator: "")
+    print("How many votes? ", terminator: "")
     
     // Get the user's input
     var input : String?
@@ -33,16 +35,20 @@ while inputToProcess == "" {
     
     // Use optional binding to see if the string can be unwrapped (to see if it is not nil)
     if let notNilInput = input {
-        
-        // You probably need to add additional checks to be sure the
-        // input received is valid
-        // Add checks as needed...
-        
-        // Save the input given, as we are certain it's what we are looking for now
-        inputToProcess = notNilInput
-        
+		if let isIntInput = Int(notNilInput) {
+			if isIntInput < 16 && isIntInput > 1 {
+				numberOfVotes = isIntInput		//checks if the input is a number with the right range
+			}
+		}
     }
-    
+}
+
+while votes == "" {
+	var input : String?
+	input = readLine()
+	if let notNilInput = input {
+		votes = notNilInput
+	}
 }
 
 /*
@@ -55,8 +61,34 @@ while inputToProcess == "" {
  
  */
 
-// Add 'process' code below....
-print("replace with process logic")
+if (votes.characters.count != numberOfVotes) {
+	output = "Error"
+} else {
+//	votes = votes.localizedCapitalized
+	var numberOfAVotes = Int()
+	var numberOfBVotes = Int()
+	for ii in votes.characters {
+		if (ii != "A" && ii != "B") {
+			output = "Error"
+			break
+		}
+		if (ii == "A") {
+			numberOfAVotes += 1
+		}
+		if (ii == "B") {
+			numberOfBVotes += 1
+		}
+	}
+	if (output != "Error"){
+		if numberOfAVotes == numberOfBVotes {
+			output = "Tie"
+		} else if (numberOfAVotes > numberOfBVotes){
+			output = "A"
+		} else {
+			output = "B"
+		}
+	}
+}
 
 
 /*
@@ -70,5 +102,5 @@ print("replace with process logic")
  */
 
 // Add 'output' code below... replace what is here as needed.
-print("The input given was: \(inputToProcess)")
+print(output)
 
