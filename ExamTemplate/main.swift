@@ -30,8 +30,7 @@ while numberOfVotes == 0 {
     print("How many votes? ", terminator: "")
     
     // Get the user's input
-    var input : String?
-    input = readLine()
+    var input = readLine()
     
     // Use optional binding to see if the string can be unwrapped (to see if it is not nil)
     if let notNilInput = input {
@@ -44,8 +43,7 @@ while numberOfVotes == 0 {
 }
 
 while votes == "" {
-	var input : String?
-	input = readLine()
+	var input = readLine()
 	if let notNilInput = input {
 		votes = notNilInput
 	}
@@ -64,7 +62,7 @@ while votes == "" {
 if (votes.characters.count != numberOfVotes) {
 	output = "Error"
 } else {
-//	votes = votes.localizedCapitalized
+	votes = votes.uppercased()
 	var numberOfAVotes = Int()
 	var numberOfBVotes = Int()
 	for ii in votes.characters {
@@ -80,12 +78,12 @@ if (votes.characters.count != numberOfVotes) {
 		}
 	}
 	if (output != "Error"){
-		if numberOfAVotes == numberOfBVotes {
-			output = "Tie"
-		} else if (numberOfAVotes > numberOfBVotes){
+		if (numberOfAVotes > numberOfBVotes){
 			output = "A"
-		} else {
+		} else if (numberOfBVotes > numberOfAVotes){
 			output = "B"
+		} else {
+			output = "Tie"
 		}
 	}
 }
